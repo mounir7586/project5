@@ -5,13 +5,8 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from flask import Flask, request, render_template
 import pickle
-import os from pml 
-import app 
-
-port = int(os.environ.get('PORT', 5000)) app.run(host='0.0.0.0', port=port)
 
 app = Flask(__name__)
-
 
 #Fonction qui permet l'extraction des tokens avec transformation en minuscule et suppression des ponctuations
 def tokenize_lower_alpha_transform (corpus):
@@ -63,4 +58,5 @@ def index():
 
 # Running the app
 if __name__ == "__main__":
-	app.run()
+	from os import environ
+	app.run(debug=False, port=environ.get("PORT", 5000), processes=2)
