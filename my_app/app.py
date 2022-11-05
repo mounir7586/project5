@@ -58,5 +58,6 @@ def index():
 
 # Running the app
 if __name__ == "__main__":
-	from os import environ
-	app.run(debug=False, port=environ.get("PORT", 5000), processes=2)
+	import os from pml
+	port = int(os.getenv('PORT'))
+	app.run(host='0.0.0.0', port=port)
