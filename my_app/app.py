@@ -44,6 +44,7 @@ def transform_bow_lem(words) :
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+	prediction = ""
 	#If a form is submitted
 	if request.method == "POST" :
 		#Chargement du modéle
