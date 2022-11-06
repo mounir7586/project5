@@ -57,7 +57,7 @@ def index():
 			dct = Dictionary(corpus)
 			bow_vector = dct.doc2bow(title_transformed)
 			max_score = 0
-			for index, score in sorted(lda_model[bow_vector], key=lambda tup: -1*tup[1]):
+			for index, score in sorted(loaded_model[bow_vector], key=lambda tup: -1*tup[1]):
 				if score > max_score :
 					max_score = score
 					prediction = 'Tags: {}'.format([w[0] for w in topic])
