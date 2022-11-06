@@ -1,4 +1,5 @@
 import gunicorn
+import nltk
 import os
 import pandas as pd
 from nltk.corpus import stopwords
