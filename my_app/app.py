@@ -60,7 +60,7 @@ def index():
 			for index, score in sorted(loaded_model[bow_vector], key=lambda tup: -1*tup[1]):
 				if score > max_score :
 					max_score = score
-					prediction = 'Tags: {}'.format([w[0] for w in topic])
+					prediction = "Tags: {}".format(loaded_model.print_topic(index, 5))
 		else :
 			prediction = ""
 	else :
