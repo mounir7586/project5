@@ -47,6 +47,7 @@ def index():
 	#If a form is submitted
 	if request.method == "POST" :
 		prediction = ""
+		question = ""
 		#Chargement du modéle
 		loaded_model = pickle.load(open('LDA_model.sav', 'rb'))
 		question = request.form.get('question')
@@ -65,6 +66,7 @@ def index():
 			prediction = ""
 	else :
 		prediction = ""
+	question = ""
 	return render_template("index.html", output = prediction)
 
 # Running the app
