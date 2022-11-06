@@ -22,6 +22,7 @@ def tokenize_lower_alpha_transform (corpus):
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
+nltk.download('omw-1.4')
 stop_word = list(set(stopwords.words('english')))
 def stop_word_filter(words) :
 	no_stop_word = [word for word in words if not word in stop_word]
