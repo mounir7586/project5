@@ -55,8 +55,8 @@ def index():
 			corpus = [title_transformed]
 			dct = Dictionary(corpus)
 			bow_vector = dct.doc2bow(title_transformed)
-			for index, score in sorted(loaded_model[bow_vector], key=lambda tup: -1*tup[1]):
-				prediction = "Tags: {}".format(loaded_model.print_topic(0, 5))
+			for index, topic in lda_model.show_topics(formatted=False, num_words= 5):
+				prediction = 'Tags: {}'.format([w[0] for w in topic])
 		else :
 			prediction = ""
 	else :
