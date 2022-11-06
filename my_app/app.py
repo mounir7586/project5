@@ -9,6 +9,7 @@ from gensim.corpora import Dictionary
 import pickle
 import gensim
 import nltk
+from gensim.parsing.preprocessing  import preprocess_string
 
 app = Flask(__name__)
 
@@ -61,7 +62,7 @@ def index():
 			for index, score in sorted(loaded_model[bow_vector], key=lambda tup: -1*tup[1]):
 				if score > max_score :
 					max_score = score
-					prediction = "Tags: {}".format(loaded_model.print_topic(index, 5))
+					prediction = "Tags: {}".format(preprocess_string(loaded_model.print_topic(index, 5)))
 		else :
 			prediction = ""
 	else :
