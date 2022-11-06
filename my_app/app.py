@@ -44,9 +44,9 @@ def transform_bow_lem(words) :
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-	prediction = ""
 	#If a form is submitted
 	if request.method == "POST" :
+		prediction = ""
 		#Chargement du modéle
 		loaded_model = pickle.load(open('LDA_model.sav', 'rb'))
 		question = request.form.get('question')
