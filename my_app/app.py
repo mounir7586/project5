@@ -50,19 +50,18 @@ def index():
 		prediction = ""
 		question = ""
 		#Chargement du modéle
-		loaded_model = pickle.load(open('LDA_model.sav', 'rb'))
+		loaded_tfidf = pickle.load(open('tfidf.sav', 'rb'))
 		question = request.form.get('question')
 		
 		if question!="" :
 			title_transformed = transform_bow_lem(question).split()
 			corpus = [title_transformed]
-			dct = Dictionary(corpus)
-			bow_vector = dct.doc2bow(title_transformed)
-			max_score = 0
-			for index, score in sorted(loaded_model[bow_vector], key=lambda tup: -1*tup[1]):
-				if score > max_score :
-					max_score = score
-					prediction = "Tags: {}".format(preprocess_string(loaded_model.print_topic(index, 5)))
+			tfidf = loaded_tfidf.transform(corpus)
+			feature_array = np.array(loaded_tfidf.get_feature_names())
+			tfidf_sorting = np.argsort(tfidf.toarray()).flatten()[::-1]
+			n = 5
+			top_n = feature_array[tfidf_sorting][:n]
+			prediction = "Tags: {}".format(top_n[0] + " " + top_n[1] + " " + top_n[2] + " " + top_n[3] + " " + top_n[4])
 		else :
 			prediction = ""
 	else :
